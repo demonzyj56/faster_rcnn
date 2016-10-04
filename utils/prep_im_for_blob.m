@@ -18,7 +18,7 @@ function [im, im_scale] = prep_im_for_blob(im, im_means, target_size, max_size)
             im = bsxfun(@minus, im, im_means);
         catch
             im_means_scale = max(double(size(im, 1)) / size(im_means, 1), double(size(im, 2)) / size(im_means, 2));
-            im_means = imresize(im_means, im_means_scale);    
+            im_means = imresize_cpu(im_means, im_means_scale);    
             y_start = floor((size(im_means, 1) - size(im, 1)) / 2) + 1;
             x_start = floor((size(im_means, 2) - size(im, 2)) / 2) + 1;
             im_means = im_means(y_start:(y_start+size(im, 1)-1), x_start:(x_start+size(im, 2)-1));
@@ -26,6 +26,6 @@ function [im, im_scale] = prep_im_for_blob(im, im_means, target_size, max_size)
         end
         
         im_scale = prep_im_for_blob_size(size(im), target_size, max_size);
-        im = imresize(im, im_scale);
+        im = imresize_cpu(im, im_scale);
     end
 end
