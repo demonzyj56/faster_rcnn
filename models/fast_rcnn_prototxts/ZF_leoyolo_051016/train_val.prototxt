@@ -1,4 +1,4 @@
-name: "Zeiler_conv5_leoyolo"
+name: "Zeiler_conv5_leoyolo_resnet_simple"
 
 input: "data"
 input_dim: 1
