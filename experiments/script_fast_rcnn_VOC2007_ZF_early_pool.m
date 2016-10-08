@@ -1,4 +1,4 @@
-function script_fast_rcnn_VOC2007_ZF_leoyolo()
+function script_fast_rcnn_VOC2007_ZF_early_pool()
 % script_fast_rcnn_VOC2007_ZF_leoyolo()
 % Fast rcnn training and testing with model modified from Zeiler & Fergus'.
 % --------------------------------------------------------
@@ -18,13 +18,13 @@ opts.gpu_id                 = auto_select_gpu;
 active_caffe_mex(opts.gpu_id, opts.caffe_version);
 
 % model
-model                       = Model.ZF_leoyolo_for_Fast_RCNN_VOC2007();
+model                       = Model.ZF_early_pool_for_Fast_RCNN_VOC2007();
 % cache name
-opts.cache_name             = 'fast_rcnn_VOC2007_ZF_leoyolo';
+opts.cache_name             = 'fast_rcnn_VOC2007_ZF_early_pool';
 % config
 conf                        = fast_rcnn_config('image_means', model.mean_image, ...
-                                               'batch_size', 32, ...
-                                               'ims_per_batch', 1);
+                                               'batch_size', 128, ...
+                                               'ims_per_batch', 2);
 % train/test data
 dataset                     = [];
 dataset                     = Dataset.voc2007_trainval_ss(dataset, 'train', conf.use_flipped);

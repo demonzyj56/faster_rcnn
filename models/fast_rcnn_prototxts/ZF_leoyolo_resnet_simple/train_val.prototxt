@@ -140,8 +140,18 @@ layer {
 			type: "gaussian"
 			std: 0.01
 		}
-		bias_term: false
+		bias_filler {
+			type: "constant"
+			value: 1
+		}
 	}
+}
+
+layer {
+	name: "branch2_relu1"
+	bottom: "branch2_deconv"
+	top: "branch2_deconv"
+	type: "ReLU"
 }
 
 layer {
@@ -157,17 +167,10 @@ layer {
 	}
 }
 
-layer {
-    name: "branch2_relu1"
-    bottom: "branch2_norm1"
-    top: "branch2_relu1"
-    type: "ReLU"
-}
-
 
 layer {
     name: "branch2_conv"
-    bottom: "branch2_relu1"
+    bottom: "branch2_norm1"
     top: "branch2_conv"
     type: "Convolution"
     param { lr_mult: 1.0 }
@@ -181,7 +184,10 @@ layer {
 			type: "gaussian"
 			std: 0.01
 		}
-		bias_term: false
+		bias_filler {
+			type: "constant"
+			value: 1
+		}
 	}
 }
 

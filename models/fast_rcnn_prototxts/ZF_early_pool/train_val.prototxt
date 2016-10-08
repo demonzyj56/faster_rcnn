@@ -287,14 +287,17 @@ layer {
 layer {
 	bottom: "pool5"
     bottom: "pool2roi"
-    top: "concat"
-    name: "concat"
-    type: "Concat"
+    top: "eltwise"
+    name: "eltwise"
+    type: "Eltwise"
+    eltwise_param {
+        operation: MAX
+    }
 }
 
 
 layer {
-	bottom: "concat"
+	bottom: "eltwise"
 	top: "fc6"
 	name: "fc6"
 	param {

@@ -33,7 +33,7 @@ dataset                     = Dataset.voc2007_test_ss(dataset, 'test', false);
 % do validation, or not
 opts.do_val                 = true; 
 imdbs_name = cell2mat(cellfun(@(x) x.name, dataset.imdb_train, 'UniformOutput', false));
-opts.fast_rcnn_model = fullfile(pwd, 'output', 'fast_rcnn_cachedir', opts.cache_name, imdbs_name, 'iter_30000');
+opts.fast_rcnn_model = fullfile(pwd, 'output', 'fast_rcnn_cachedir', opts.cache_name, imdbs_name, 'iter_10000');
 
 %% -------------------- TRAINING --------------------
 % 
